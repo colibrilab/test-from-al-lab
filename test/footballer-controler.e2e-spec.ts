@@ -42,14 +42,22 @@ describe('FootballerController (e2e)', () => {
       .send({ name: 'Stephen William Hawking', number: Config.indelibleNumber })
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect({ name: 'Stephen William Hawking', number: Config.indelibleNumber, id: 1 });
+      .then((res) => {
+        expect(res.body).toHaveProperty('id');
+        expect(res.body).toHaveProperty('name');
+        expect(res.body).toHaveProperty('number');
+      });
 
     await request(httpServer)
       .put('/')
       .send({ name: 'Roger Penrose', number: Config.indelibleNumber + 1 })
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect({ name: 'Roger Penrose', number: Config.indelibleNumber + 1, id: 2 });
+      .then((res) => {
+        expect(res.body).toHaveProperty('id');
+        expect(res.body).toHaveProperty('name');
+        expect(res.body).toHaveProperty('number');
+      });
   });
 
   it('/ (PUT) Can not add an entry with the same name', async () => {
@@ -65,8 +73,11 @@ describe('FootballerController (e2e)', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .then((res) => {
-        expect(Array.isArray(res.body)).toBe(true);
+        expect.arrayContaining(res.body);
         expect(res.body.length).toBe(2);
+        expect(res.body[0]).toHaveProperty('id');
+        expect(res.body[0]).toHaveProperty('name');
+        expect(res.body[0]).toHaveProperty('number');
       });
   });
 
