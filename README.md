@@ -41,6 +41,7 @@ $ npm run test:e2e
 
 
 ## API resources
-http://localhost:3000/ - server
 
-http://localhost:3000/docs/ - swagger documentation
+Server: [http://localhost:3000](http://localhost:3000)
+
+API documentation: [http://localhost:3000/docs](http://localhost:3000/docs)
