@@ -65,12 +65,8 @@ describe('FootballerController (e2e)', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .then((res) => {
-        if (!Array.isArray(res.body)) {
-          throw 'the result must be an array';
-        }
-        if (res.body.length !== 2) {
-          throw 'the result should return two elements';
-        }
+        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.body.length).toBe(2);
       });
   });
 
