@@ -4,6 +4,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Footballer } from '../../entities/footballer';
 import { FootballerCreateDto } from './dto/footballer.create.dto';
 import { FootballerDeleteDto } from './dto/footballer.delete.dto';
+import { Config } from '../../config';
 
 @Injectable()
 export class FootballerService {
@@ -31,8 +32,7 @@ export class FootballerService {
     if (!footballer) {
       throw new HttpException('Player not found.', HttpStatus.BAD_REQUEST);
     }
-    const dedicatedNumber = 10;
-    if (footballer.number === dedicatedNumber) {
+    if (footballer.number === Config.indelibleNumber) {
       throw new HttpException(
         'Сan not delete players with this number.',
         HttpStatus.BAD_REQUEST,
