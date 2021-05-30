@@ -77,7 +77,7 @@ describe('FootballerController (e2e)', () => {
       .expect(400);
   });
 
-  it(`/ (DELETE) Сan remove a player with a number not equal to ${Config.indelibleNumber}`, async () => {
+  it(`/ (DELETE) Remove a player with a number not equal to ${Config.indelibleNumber}`, async () => {
     await request(httpServer)
       .delete('/')
       .send({ id: 2 })
