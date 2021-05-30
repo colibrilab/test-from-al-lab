@@ -34,7 +34,7 @@ $ npm run start
 $ npm run test:e2e
 ```
 
-##Configuration
+## Configuration
 ```bash
 /src/config.ts
 ```
