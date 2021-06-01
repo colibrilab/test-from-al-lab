@@ -14,9 +14,6 @@ export class FootballerService {
     manager: EntityManager,
     footballer: Footballer,
   ): Promise<void> {
-    if (footballer.number < 1) {
-      throw new HttpException('Number is incorrect.', HttpStatus.BAD_REQUEST);
-    }
     const exists = await manager.getRepository(Footballer).findOne({
       name: footballer.name,
     });

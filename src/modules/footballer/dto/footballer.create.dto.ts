@@ -1,9 +1,10 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDefined, IsNotEmpty, IsNumber, IsString, Length, Min } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
 
 export class FootballerCreateDto {
   @IsString()
-  @IsNotEmpty()
+  @Length(5, 100)
+  @IsDefined()
   @ApiModelProperty({
     description: 'Player name',
     type: String,
@@ -13,7 +14,8 @@ export class FootballerCreateDto {
   name: string;
 
   @IsNumber({ maxDecimalPlaces: 0 })
-  @IsNotEmpty()
+  @Min(1)
+  @IsDefined()
   @ApiModelProperty({
     description: 'Player number',
     type: Number,

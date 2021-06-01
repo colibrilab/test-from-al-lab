@@ -1,9 +1,10 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import {IsDefined, IsNotEmpty, IsNumber, Min} from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger/dist/decorators/api-model-property.decorator';
 
 export class FootballerDeleteDto {
   @IsNumber({ maxDecimalPlaces: 0 })
-  @IsNotEmpty()
+  @Min(1)
+  @IsDefined()
   @ApiModelProperty({
     description: 'Player id',
     type: Number,
